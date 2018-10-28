@@ -5,7 +5,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-    <title>Dashboard</title>
+    <title>New Post</title>
   </head>
   <body>
     <div class="container-fluid h-100">
@@ -24,7 +24,7 @@
                             <a class="nav-link pl-0" href="/create"><i class="fas fa-pencil-alt fa-fw"></i> <span class="d-none d-md-inline">New Post</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
+                            <a class="nav-link pl-0" href="/edit"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link pl-0" href="#"><i class="far fa-trash-alt fa-fw"></i> <span class="d-none d-md-inline">Delete</span></a>
@@ -34,30 +34,9 @@
             </nav>
         </aside>
         <main class="col bg-faded py-3">
-          <span class="text-center">
-            <h1>All Posts</h1>
-          </span>
           <div class="container">
-            <table class="table">
-              <thead class="" style="background-color: #b8bad6;">
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Author</th>
-                  <th scope="col">Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% posts.forEach(function(post) { %>
-                  <tr>
-                    <th scope="row"><%= post.id%></th>
-                    <td><a href="/single-post/<%= post.id%>" class="dashboard-links"><%= post.title %></a></td>
-                    <td>Dario Argento</td>
-                    <td><%= post.createdAt %></td>
-                    </tr>
-                <% })%>
-              </tbody>
-            </table>
+            <%= post.title %>
+            <%= post.post %>
           </div>
         </main>
       </div>

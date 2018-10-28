@@ -33,9 +33,15 @@ router.post('/create', function(req, res) {
 });
 
 //Edit post
-router.get('/edit/:id', function(req, res) {
-  models.Post.findOne()
-  res.render('edit');
+router.get('/single-post/:id', function(req, res) {
+  const id = req.params.id;
+  models.Post.findOne({
+    where: {
+      id: id
+    }
+  }).then(function(post) {
+    res.render('single-post', {post});
+  });
 });
 
 module.exports = router;
