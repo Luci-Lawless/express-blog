@@ -24,7 +24,7 @@
                             <a class="nav-link pl-0" href="/create"><i class="fas fa-pencil-alt fa-fw"></i> <span class="d-none d-md-inline">New Post</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link pl-0" href="/edit"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
+                            <a class="nav-link pl-0" href="#"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link pl-0" href="#"><i class="far fa-trash-alt fa-fw"></i> <span class="d-none d-md-inline">Delete</span></a>
@@ -48,7 +48,14 @@
                 </tr>
               </thead>
               <tbody>
-              
+                <% posts.forEach(function(post) { %>
+                  <tr>
+                    <th scope="row"><%= post.id%></th>
+                    <td><a href="/edit/:id" class="dashboard-links"><%= post.title %></a></td>
+                    <td>Dario Argento</td>
+                    <td><%= post.createdAt %></td>
+                    </tr>
+                <% })%>
               </tbody>
             </table>
           </div>
