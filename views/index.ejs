@@ -6,11 +6,15 @@
   </head>
   <body>
     <%- include('layout'); -%>
-    <div class="">
+    <div class="video-banner">
+      <%# <video src="/public/images/dracula.mp4" autoplay loop muted></video>%>
+      <div class="video-text">
+        <p>[Classic Horror Cinema]</p>
+      </div>
     </div>
     <div class="container">
       <span class=""><h1>Posts</h1></span>
-      <% posts.forEach(function(post) {
+      <% posts.forEach(function(post) { %>
         <div class="row post-box">
           <div class="col-md-10 col-md-offset-2">
             <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
@@ -19,7 +23,7 @@
             <p><%= post.post %></p>
           </div>
         </div>
-      <% })%>%>
+      <% })%>
     </div>
   </body>
 </html>

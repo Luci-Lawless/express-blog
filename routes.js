@@ -21,7 +21,7 @@ router.get('/create', function(req, res) {
   res.render('create');
 });
 
-router.post('/', function(req, res) {
+router.post('/create', function(req, res) {
   models.Post.create({
     title: req.body.addTitle,
     post: req.body.addPost
