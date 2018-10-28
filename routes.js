@@ -1,19 +1,35 @@
 var express = require('express');
 var router = express.Router();
+var models = require('./models/post');
 
-/* Index */
+/* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  models.Post.findAll().then(function(posts){
+    res.render('index', {posts: posts});
+  })
 });
 
-/* Dashboard */
+//Dashboard
 router.get('/dashboard', function(req, res) {
-  res.render('dashboard');
+  models.Post.findAll().then(function(posts){
+    res.render('dashboard', {posts: posts});
+  })
 });
 
-/* Create post */
+//Create post
 router.get('/create', function(req, res) {
   res.render('create');
+});
+
+router.post('/', function(req, res) {
+  models.Post.create({
+    title: req.body.addTitle,
+    post: req.body.addPost
+  })
+  .then(function(posts) {
+    posts.save();
+    res.redirect('/');
+  });
 });
 
 module.exports = router;
