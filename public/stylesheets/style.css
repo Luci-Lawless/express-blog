@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif+KR|Oswald|Playfair+Display|Yesteryear');
+@import url('https://fonts.googleapis.com/css?family=Reenie+Beanie');
+
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Playfair Display', serif;
+  color: #2E2E2E;
+  background-color: #fff;
+}
+
+.navbar-custom {
+  background-color: transparent;
+}
+
+.navbar-custom a {
+  color: #000000;
+  font-size: 1.4rem;
+}
+
+.date {
+  font-size: 1.5rem;
+  color: #624f9c;
+}
+/*Index*/
+
+h1 {
+  font-family: 'Yesteryear', cursive;
+  font-size: 5rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.container {
+  min-width: 80%;
+}
+
+.container img {
+   width: 100%;
+   box-shadow: 10px 10px 10px 7px rgba(0,0,0,.7);
+   margin-bottom: 5%;
+}
+/*
+.hero-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/public/images/banner.png");
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}*/
+
+/*Dashboard*/
+.dashboard-links {
+  text-decoration: none;
+  font-weight: bold;
+  color: #2E2E2E;
+}
+
+.dashboard-links:hover {
+  text-decoration: none;
+  color: #624f9c;
+}
+/*Form*/
+label {
+  font-size: 1.5rem;
+}
+
+/*form {
+  box-shadow:10px 10px 7px rgba(0,0,0,.7);
+  background-color: #fff;
+  padding: 5%;
+  margin-top: 10%;
+}*/
+
+/*Posts*/
+.post-box div {
+  font-size: 2em;
+  background-color: #fff;
+  margin: 0 auto;
+  margin-top: 3rem;
+  margin-bottom: 20px;
+  padding: 40px;
+  text-align: justify;
+  /*box-shadow: 10px 10px 10px 7px rgba(0,0,0,.7);*/
+  position:relative;
+  top:-10px;
+}
+
+.title {
+  font-size: 5rem;
+  color: #624f9c;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+/*Buttons*/
+.btn-custom {
+  width: 15%;
+  height: 10%;
+  font-size: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #b8bad6;
+  border-color: transparent;
+}
+
+.btn-custom:hover {
+  background-color: #2E2E2E;
+  color: #fff;
+}
