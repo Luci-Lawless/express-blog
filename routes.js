@@ -10,10 +10,23 @@ router.get('/', function(req, res) {
 });
 
 /*Dashboard*/
+//All posts
 router.get('/dashboard', function(req, res) {
   models.Post.findAll().then(function(posts){
     res.render('dashboard', {posts: posts});
   })
+});
+
+//User posts
+router.get('/my-posts/:user_id', function(req, res) {
+  const user_id = req.params.id;
+  models.Post.findOne({
+    where: {
+      user_id: user_id
+    }
+  }).then(function(posts) {
+    res.render('my-posts', {posts});
+  });
 });
 
 //Create post

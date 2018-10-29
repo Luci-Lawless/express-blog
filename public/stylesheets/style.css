@@ -101,6 +101,7 @@ label {
   font-size: 100%;
   text-align: center;
   padding: 10px;
+  margin: 0 auto;
   background-color: #b8bad6;
   border-color: transparent;
 }

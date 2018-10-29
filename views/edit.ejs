@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./public/stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/stylesheets/style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <title>New Post</title>
   </head>
@@ -21,6 +21,9 @@
                             <a class="nav-link pl-0" href="/dashboard"><i class="fa fa-book fa-fw"></i> <span class="d-none d-md-inline">All Posts</span></a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link pl-0" href="/user-posts"><i class="fa fa-user-edit fa-fw"></i> <span class="d-none d-md-inline">My Posts</span></a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link pl-0" href="/create"><i class="fas fa-pencil-alt fa-fw"></i> <span class="d-none d-md-inline">New Post</span></a>
                         </li>
                     </ul>
@@ -35,11 +38,11 @@
               </span>
               <div class="form-group">
                 <label for="name">Title</label>
-                <input class="form-control" name="updateTitle" type="text" value=<%= post.title %>>
+                <input class="form-control" name="updateTitle" type="text" value="<%= post.title %>">
               </div>
               <div class="form-group">
               <label for="exampleFormControlTextarea1">Post</label>
-              <textarea class="form-control" name="updatePost" id="exampleFormControlTextarea1" rows="15" value=<%= post.post %>required></textarea>
+              <textarea class="form-control" name="updatePost" id="exampleFormControlTextarea1" rows="15" required><%= post.post %></textarea>
             </div>
               <button type="submit" class="btn btn-custom mb-2"><i class="far fa-save" style="font-size:25px"></i> Save</button>
               <button type="submit" class="btn btn-custom mb-2"><i class="far fa-trash-alt" style="font-size:25px"></i> Discard</button>
