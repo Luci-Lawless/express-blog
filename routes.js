@@ -69,8 +69,25 @@ router.get('/edit/:id', function(req, res) {
   });
 });
 
-router.put('/edit/:id', function(req, res) {
+router.post('/edit/:id', function(req, res) {
+  const id = req.params.id;
+  models.Post.findOne({
+    where: {
+      id: id
+    }
+  }).then(function(post) {
+    post.title = req.body.updateTitle;
+    post.post = req.body.updatePost;
 
+    post.save().then(() => {
+      res.render('single-post', {post});
+    })
+  }).catch(function(error) {
+    if (error){
+      console.log(error);
+      throw error;
+    }
+  });
 });
 
 module.exports = router;
