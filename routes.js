@@ -9,7 +9,18 @@ router.get('/', function(req, res) {
   })
 });
 
+// Sign up
+router.get('/user/signup', function(req, res) {
+  res.render('signup');
+});
+
+//Login
+router.get('/user/login', function(req, res) {
+  res.render('login');
+});
+
 /*Dashboard*/
+
 //All posts
 router.get('/dashboard', function(req, res) {
   models.Post.findAll().then(function(posts){
@@ -69,7 +80,8 @@ router.get('/edit/:id', function(req, res) {
   });
 });
 
-router.post('/edit/:id', function(req, res) {
+//Update post
+router.post ('/edit/:id', function(req, res) {
   const id = req.params.id;
   models.Post.findOne({
     where: {
