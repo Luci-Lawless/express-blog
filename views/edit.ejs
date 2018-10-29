@@ -23,29 +23,23 @@
                         <li class="nav-item">
                             <a class="nav-link pl-0" href="/create"><i class="fas fa-pencil-alt fa-fw"></i> <span class="d-none d-md-inline">New Post</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="/edit"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="far fa-trash-alt fa-fw"></i> <span class="d-none d-md-inline">Delete</span></a>
-                        </li>
                     </ul>
                 </div>
             </nav>
         </aside>
         <main class="col bg-faded py-3">
           <div class="container">
-            <form action="/edit/:id" method="post">
+            <form action="/edit/<%= post.id%>" method="post">
               <span class="text-center">
                 <h1>Edit Post</h1>
               </span>
               <div class="form-group">
                 <label for="name">Title</label>
-                <input class="form-control" name="updateTitle" type="text" value=<%= posts.title %>>
+                <input class="form-control" name="updateTitle" type="text" value=<%= post.title %>>
               </div>
               <div class="form-group">
               <label for="exampleFormControlTextarea1">Post</label>
-              <textarea class="form-control" name="updatePost" id="exampleFormControlTextarea1" rows="15" value=<%= posts.post %>required></textarea>
+              <textarea class="form-control" name="updatePost" id="exampleFormControlTextarea1" rows="15" value=<%= post.post %>required></textarea>
             </div>
               <button type="submit" class="btn btn-custom mb-2"><i class="far fa-save" style="font-size:25px"></i> Save</button>
               <button type="submit" class="btn btn-custom mb-2"><i class="far fa-trash-alt" style="font-size:25px"></i> Discard</button>

@@ -23,20 +23,16 @@
                         <li class="nav-item">
                             <a class="nav-link pl-0" href="/create"><i class="fas fa-pencil-alt fa-fw"></i> <span class="d-none d-md-inline">New Post</span></a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="/edit"><i class="far fa-edit fa-fw"></i> <span class="d-none d-md-inline">Edit</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link pl-0" href="#"><i class="far fa-trash-alt fa-fw"></i> <span class="d-none d-md-inline">Delete</span></a>
-                        </li>
                     </ul>
                 </div>
             </nav>
         </aside>
-        <main class="col bg-faded py-3">
+        <main class="col bg-faded py-2">
           <div class="container">
-            <%= post.title %>
-            <%= post.post %>
+            <h1><%= post.title %></h1>
+            <div class="post-box"><%= post.post %></div>
+            <button type="submit" class="btn btn-custom mb-2"><i class="far fa-edit" style="font-size:25px"></i> <a href="/edit/<%= post.id %>">Edit</a></button>
+            <button type="submit" class="btn btn-custom mb-2"><i class="far fa-trash-alt" style="font-size:25px"></i> Delete</button>
           </div>
         </main>
       </div>

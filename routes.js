@@ -32,7 +32,7 @@ router.post('/create', function(req, res) {
   });
 });
 
-//Edit post
+//Single post
 router.get('/single-post/:id', function(req, res) {
   const id = req.params.id;
   models.Post.findOne({
@@ -42,6 +42,22 @@ router.get('/single-post/:id', function(req, res) {
   }).then(function(post) {
     res.render('single-post', {post});
   });
+});
+
+//Edit post
+router.get('/edit/:id', function(req, res) {
+  const id = req.params.id;
+  models.Post.findOne({
+    where: {
+      id: id
+    }
+  }).then(function(post) {
+    res.render('edit', {post});
+  });
+});
+
+router.put('/edit/:id', function(req, res) {
+
 });
 
 module.exports = router;
