@@ -91,7 +91,7 @@ router.post ('/edit/:id', function(req, res) {
     post.title = req.body.updateTitle;
     post.post = req.body.updatePost;
 
-    post.save().then(() => {
+    post.save().then(function() {
       res.render('single-post', {post});
     })
   }).catch(function(error) {
