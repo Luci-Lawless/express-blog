@@ -22,15 +22,6 @@ const Post = sequelize.define('post', {
     type: Sequelize.TEXT
   }
 });
-// Post.belongsTo(User);
-// // force: true will drop the table if it already exists
-// Post.sync({force: true}).then(() => {
-//   // Table created
-//   return Post.create({
-//     title: Post.addTitle,
-//     post: Post.addPost
-//   });
-// });
 
 sequelize.sync();
 

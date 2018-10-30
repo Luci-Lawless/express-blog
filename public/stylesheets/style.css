@@ -96,11 +96,11 @@ label {
 
 /*Buttons*/
 .btn-custom {
-  width: 15%;
-  height: 10%;
+  min-width: 15%;
+  min-height: 10%;
   font-size: 100%;
   text-align: center;
-  padding: 10px;
+  padding: 1%;
   margin: 0 auto;
   background-color: #b8bad6;
   border-color: transparent;

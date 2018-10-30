@@ -11,11 +11,11 @@ require('dotenv').config();
 var app = express();
 
 //Connection string
-// const sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-//   host: 'localhost',
-//   dialect: 'postgres',
-//   storage: './session.postgres'
-// });
+var sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
+  host: 'localhost',
+  dialect: 'postgres',
+  storage: './session.postgres'
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,14 +29,15 @@ app.use(cookieParser());
 //Session
 // app.use(session({
 //   store: new SequelizeStore({
-//       db: sequelize,
-//       checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
-//       expiration: 7 * 24 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session.
+//     db: sequelize,
+//     checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
+//     expiration: 7 * 24 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session.
 //   }),
-//   secret: 'slayer',
+//   secret: process.env.MY_SECRET,
 //   saveUnitialized: true,
 //   resave: false
 // }));
+
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use('/', blogRouter);
 
