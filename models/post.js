@@ -10,6 +10,11 @@ const sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTG
 });
 
 const Post = sequelize.define('post', {
+  post_id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
   title: {
     type: Sequelize.STRING
   },

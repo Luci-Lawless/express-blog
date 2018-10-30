@@ -34,8 +34,8 @@
           <div class="container">
             <h1><%= post.title %></h1>
             <div class="post-box" style="padding-bottom:5%;"><%= post.post %></div>
-            <a href="/edit/<%= post.id %>"><button type="submit" class="btn btn-custom mb-2"><i class="far fa-edit" style="font-size:25px"></i> Edit</button></a>
-            <a href="/edit/<%= post.id %>"><button type="submit" class="btn btn-custom mb-2"><i class="far fa-trash-alt" style="font-size:25px"></i> Delete</button></a>
+            <a href="/edit/<%= post.post_id %>"><button type="submit" class="btn btn-custom mb-2"><i class="far fa-edit" style="font-size:25px"></i> Edit</button></a>
+            <a href="/edit/<%= post.post_id %>"><button type="submit" class="btn btn-custom mb-2"><i class="far fa-trash-alt" style="font-size:25px"></i> Delete</button></a>
           </div>
         </main>
       </div>

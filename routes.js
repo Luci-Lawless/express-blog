@@ -30,7 +30,7 @@ router.get('/dashboard', function(req, res) {
 
 //User posts
 router.get('/my-posts/:user_id', function(req, res) {
-  const user_id = req.params.id;
+  const user_id = req.params.user_id;
   models.Post.findOne({
     where: {
       user_id: user_id
@@ -57,11 +57,11 @@ router.post('/create', function(req, res) {
 });
 
 //Single post
-router.get('/single-post/:id', function(req, res) {
-  const id = req.params.id;
+router.get('/single-post/:post_id', function(req, res) {
+  const post_id = req.params.post_id;
   models.Post.findOne({
     where: {
-      id: id
+      post_id: post_id
     }
   }).then(function(post) {
     res.render('single-post', {post});
@@ -69,11 +69,11 @@ router.get('/single-post/:id', function(req, res) {
 });
 
 //Edit post
-router.get('/edit/:id', function(req, res) {
-  const id = req.params.id;
+router.get('/edit/:post_id', function(req, res) {
+  const post_id = req.params.post_id;
   models.Post.findOne({
     where: {
-      id: id
+      post_id: post_id
     }
   }).then(function(post) {
     res.render('edit', {post});
@@ -81,11 +81,11 @@ router.get('/edit/:id', function(req, res) {
 });
 
 //Update post
-router.post ('/edit/:id', function(req, res) {
-  const id = req.params.id;
+router.post ('/edit/:post_id', function(req, res) {
+  const post_id = req.params.post_id;
   models.Post.findOne({
     where: {
-      id: id
+      post_id: post_id
     }
   }).then(function(post) {
     post.title = req.body.updateTitle;
