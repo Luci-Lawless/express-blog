@@ -6,16 +6,16 @@ var logger = require('morgan');
 var session = require('express-session')
 var blogRouter = require('./routes');
 var Sequelize = require('sequelize');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
+var User = require('./models/user');
 require('dotenv').config();
 var app = express();
 
 //Connection string
-var sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
-  storage: './session.postgres'
-});
+// var sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   storage: './session.postgres'
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

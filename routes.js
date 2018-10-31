@@ -36,7 +36,7 @@ router.get('/my-posts/:user_id', function(req, res) {
       user_id: user_id
     }
   }).then(function(posts) {
-    res.render('my-posts', {posts});
+    res.render('my-posts', {posts: posts});
   });
 });
 
@@ -81,7 +81,7 @@ router.get('/edit/:post_id', function(req, res) {
 });
 
 //Update post
-router.post ('/edit/:post_id', function(req, res) {
+router.post('/edit/:post_id', function(req, res) {
   const post_id = req.params.post_id;
   models.Post.findOne({
     where: {
