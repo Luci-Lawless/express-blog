@@ -25,7 +25,6 @@ router.get('/user/signup', sessionChecker, function(req, res) {
 });
 
 router.post('/user/signup', sessionChecker, function(req, res) {
-
   userModel.create({
       name: req.body.name,
       email: req.body.email,
@@ -45,17 +44,23 @@ router.get('/user/login', sessionChecker, function(req, res) {
   res.render('login');
 });
 
-// router.post('/user/login', sessionChecker, function(req, res) {
-//   var username = req.body.name,
-//       password = req.body.password;
-//   userModel.findOne({ where: { username: name } }).then()
-// });
-
-router.post('/user/login', function() {
-
+router.post('/user/login', sessionChecker, function(req, res) {
+  var username = req.body.name,
+      password = req.body.password;
+  userModel.findOne({
+    where: { username: name }
+  })
+  .then(function(user) {
+    if(!user) {
+      res.redirect('/user/login');
+    } else if (!user.validPassword(password)) {
+      res.redirect('/user/login');
+    } else {
+      req.session.user = user.dataValues;
+      res.redirect('/dashboard');
+    }
+  });
 });
-
-
 
 /*Dashboard*/
 
