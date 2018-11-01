@@ -10,13 +10,6 @@ var User = require('./models/user');
 require('dotenv').config();
 var app = express();
 
-//Connection string
-// var sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-//   host: 'localhost',
-//   dialect: 'postgres',
-//   storage: './session.postgres'
-// });
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

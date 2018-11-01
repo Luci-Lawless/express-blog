@@ -3,13 +3,13 @@ var router = express.Router();
 var postModel = require('./models/post');
 var userModel = require('./models/user');
 
-
+//Check for logged in user
 var sessionChecker = (req, res, next) => {
-    if (req.session.user && req.cookies.user_sid) {
-        res.redirect('/dashboard');
-    } else {
-        next();
-    }
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/dashboard');
+  } else {
+      next();
+  }
 };
 
 /*Index*/
@@ -45,10 +45,11 @@ router.get('/user/login', sessionChecker, function(req, res) {
 });
 
 router.post('/user/login', sessionChecker, function(req, res) {
-  var username = req.body.name,
-      password = req.body.password;
+  var username = req.body.name;
+  var password = req.body.password;
+
   userModel.findOne({
-    where: { username: name }
+    where: { name: username }
   })
   .then(function(user) {
     if(!user) {
@@ -62,13 +63,27 @@ router.post('/user/login', sessionChecker, function(req, res) {
   });
 });
 
+//Logout
+router.get('/user/logout', function(req, res) {
+  if(req.session.user && req.cookies.user_sid) {
+    res.clearCookie('user_sid');
+    res.redirect('/');
+  } else {
+    res.redirect('/user/login');
+  }
+});
+
 /*Dashboard*/
 
 //All posts
 router.get('/dashboard', function(req, res) {
-  postModel.Post.findAll().then(function(posts){
-    res.render('dashboard', {posts: posts});
-  })
+  if (req.session.user && req.cookies.user_sid) {
+    postModel.Post.findAll().then(function(posts) {
+      res.render('dashboard', {posts: posts});
+    })
+  } else {
+    res.redirect('/user/login');
+  }
 });
 
 //User posts
