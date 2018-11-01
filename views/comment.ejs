@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include('layout'); -%>
+    <div class="video-banner">
+      <div class="video-text">
+      </div>
+    </div>
+    <div class="container">
+      <span class=""><h1>Posts</h1></span>
+      <% posts.forEach(function(post) { %>
+        <div class="row post-box">
+          <div class="col-md-10 col-md-offset-2">
+            <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
+            <h1 class="title"><%= post.title %></h1>
+             <span class="date"><p><%= post.createdAt%></p></span>
+            <p><%= post.post %></p>
+          </div>
+        </div>
+      <% })%>
+    </div>
+  </body>
+</html>

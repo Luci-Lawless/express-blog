@@ -23,6 +23,15 @@ const Post = sequelize.define('post', {
   }
 });
 
+Post.associate = function (models) {
+   models.Post.belongsTo(models.User, {
+     onDelete: "CASCADE",
+     foreignKey: {
+       allowNull: false
+     }
+   });
+ };
+
 // Create table
 sequelize.sync()
   .then(() => console.log('Posts table created!'))
