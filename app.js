@@ -2,20 +2,13 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session');
 var logger = require('morgan');
-var session = require('express-session')
 var blogRouter = require('./routes');
 var Sequelize = require('sequelize');
-var SequelizeStore = require('connect-session-sequelize')(session.Store);
+var User = require('./models/user');
 require('dotenv').config();
 var app = express();
-
-//Connection string
-var sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
-  host: 'localhost',
-  dialect: 'postgres',
-  storage: './session.postgres'
-});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,17 +19,33 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-//Session
-// app.use(session({
-//   store: new SequelizeStore({
-//     db: sequelize,
-//     checkExpirationInterval: 15 * 60 * 1000, // The interval at which to cleanup expired sessions in milliseconds.
-//     expiration: 7 * 24 * 60 * 60 * 1000 // The maximum age (in milliseconds) of a valid session.
-//   }),
-//   secret: process.env.MY_SECRET,
-//   saveUnitialized: true,
-//   resave: false
-// }));
+//Initialize Express Session
+app.use(session({
+  key: 'user_sid',
+  secret: 'slayer',
+  resave: false,
+  saveUnitialized: false,
+  cookie: {
+    expires: 600000
+  }
+}));
+
+//Middleware to check if the user's cookie is still saved in the browser
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');
+    }
+    next();
+});
+
+//Check for logged in user
+var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/dashboard');
+    } else {
+        next();
+    }
+};
 
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use('/', blogRouter);

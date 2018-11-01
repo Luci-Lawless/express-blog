@@ -1,42 +1,100 @@
 var express = require('express');
 var router = express.Router();
-var models = require('./models/post');
+var postModel = require('./models/post');
+var userModel = require('./models/user');
+
+//Check for logged in user
+var sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/dashboard');
+  } else {
+      next();
+  }
+};
 
 /*Index*/
 router.get('/', function(req, res) {
-  models.Post.findAll().then(function(posts){
+  postModel.Post.findAll().then(function(posts){
     res.render('index', {posts: posts});
   })
 });
 
 // Sign up
-router.get('/user/signup', function(req, res) {
+router.get('/user/signup', sessionChecker, function(req, res) {
   res.render('signup');
 });
 
+router.post('/user/signup', sessionChecker, function(req, res) {
+  userModel.create({
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password
+  })
+  .then(user => {
+      req.session.user = user.dataValues;
+      res.redirect('/dashboard');
+  })
+  .catch(error => {
+      res.redirect('/user/signup');
+  });
+});
+
 //Login
-router.get('/user/login', function(req, res) {
+router.get('/user/login', sessionChecker, function(req, res) {
   res.render('login');
+});
+
+router.post('/user/login', sessionChecker, function(req, res) {
+  var username = req.body.name;
+  var password = req.body.password;
+
+  userModel.findOne({
+    where: { name: username }
+  })
+  .then(function(user) {
+    if(!user) {
+      res.redirect('/user/login');
+    } else if (!user.validPassword(password)) {
+      res.redirect('/user/login');
+    } else {
+      req.session.user = user.dataValues;
+      res.redirect('/dashboard');
+    }
+  });
+});
+
+//Logout
+router.get('/user/logout', function(req, res) {
+  if(req.session.user && req.cookies.user_sid) {
+    res.clearCookie('user_sid');
+    res.redirect('/');
+  } else {
+    res.redirect('/user/login');
+  }
 });
 
 /*Dashboard*/
 
 //All posts
 router.get('/dashboard', function(req, res) {
-  models.Post.findAll().then(function(posts){
-    res.render('dashboard', {posts: posts});
-  })
+  if (req.session.user && req.cookies.user_sid) {
+    postModel.Post.findAll().then(function(posts) {
+      res.render('dashboard', {posts: posts});
+    })
+  } else {
+    res.redirect('/user/login');
+  }
 });
 
 //User posts
 router.get('/my-posts/:user_id', function(req, res) {
   const user_id = req.params.user_id;
-  models.Post.findOne({
+  postModel.Post.findOne({
     where: {
       user_id: user_id
     }
   }).then(function(posts) {
-    res.render('my-posts', {posts});
+    res.render('my-posts', {posts: posts});
   });
 });
 
@@ -46,7 +104,7 @@ router.get('/create', function(req, res) {
 });
 
 router.post('/create', function(req, res) {
-  models.Post.create({
+  postModel.Post.create({
     title: req.body.addTitle,
     post: req.body.addPost
   })
@@ -59,7 +117,7 @@ router.post('/create', function(req, res) {
 //Single post
 router.get('/single-post/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  models.Post.findOne({
+  postModel.Post.findOne({
     where: {
       post_id: post_id
     }
@@ -71,7 +129,7 @@ router.get('/single-post/:post_id', function(req, res) {
 //Edit post
 router.get('/edit/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  models.Post.findOne({
+  postModel.Post.findOne({
     where: {
       post_id: post_id
     }
@@ -81,9 +139,9 @@ router.get('/edit/:post_id', function(req, res) {
 });
 
 //Update post
-router.post ('/edit/:post_id', function(req, res) {
+router.post('/edit/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  models.Post.findOne({
+  postModel.Post.findOne({
     where: {
       post_id: post_id
     }
