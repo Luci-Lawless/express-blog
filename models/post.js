@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const DataTypes = require('sequelize/lib/data-types');
 const User = require('./user');
+const Comment = require('./comment');
 require('dotenv').config();
 
 const sequelize = new Sequelize(process.env.POSTGRES_DATABASE, process.env.POSTGRES_USER, process.env.POSTGRES_PASSWORD, {
@@ -30,6 +31,10 @@ Post.associate = function (models) {
        allowNull: false
      }
    });
+ };
+
+ Post.associate = function(models) {
+    models.Post.hasMany(models.Comment);
  };
 
 // Create table

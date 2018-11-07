@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var postModel = require('./models/post');
 var userModel = require('./models/user');
+var commentModel = require('./models/comment');
+
 
 //Check for logged in user
 var sessionChecker = (req, res, next) => {
@@ -18,6 +20,10 @@ router.get('/', function(req, res) {
     res.render('index', {posts: posts});
   })
 });
+
+//Comments
+// router.get('/post/:id/comment', function(req, res) {
+// });
 
 // Sign up
 router.get('/user/signup', sessionChecker, function(req, res) {
