@@ -26,6 +26,7 @@ Comment.associate = function (models) {
    models.Comment.belongsTo(models.Post, {
      onDelete: "CASCADE",
      foreignKey: {
+       name: "post_id",
        allowNull: false
      }
    });

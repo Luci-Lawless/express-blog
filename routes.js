@@ -22,8 +22,17 @@ router.get('/', function(req, res) {
 });
 
 //Comments
-// router.get('/post/:id/comment', function(req, res) {
-// });
+router.post('/post/:post_id/comment', function(req, res) {
+  commentModel.Comment.create({
+    comment_author: req.body.comment_author,
+    guest_email: req.body.guest_email,
+    comment_body: req.body.comment
+  })
+  .then(function(comment) {
+    comment.save();
+    res.redirect('/');
+  });
+});
 
 // Sign up
 router.get('/user/signup', sessionChecker, function(req, res) {

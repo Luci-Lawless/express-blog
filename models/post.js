@@ -34,7 +34,12 @@ Post.associate = function (models) {
  };
 
  Post.associate = function(models) {
-    models.Post.hasMany(models.Comment);
+    models.Post.hasMany(models.Comment, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
  };
 
 // Create table
