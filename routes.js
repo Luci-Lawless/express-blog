@@ -13,7 +13,9 @@ var sessionChecker = (req, res, next) => {
 
 /*Index*/
 router.get('/', function(req, res) {
-  models.post.findAll().then(function(posts){
+  models.post.findAll({
+    order: [['createdAt', 'DESC']]
+  }).then(function(posts){
     res.render('index', {posts: posts});
   })
 });
@@ -92,27 +94,17 @@ router.get('/user/logout', function(req, res) {
 router.get('/dashboard', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
     models.post.findAll({
-      where: {
-        userUserId: req.session.user.user_id
-      }
+     order: [['createdAt', 'DESC']],
+     where: {
+       userUserId: req.session.user.user_id
+     },
+     include: [models.user]
     }).then(function(posts) {
       res.render('dashboard', {posts: posts});
     })
   } else {
     res.redirect('/user/login');
   }
-});
-
-//User posts
-router.get('/my-posts/:user_id', function(req, res) {
-  var user_id = req.params.user_id;
-  models.post.findOne({
-    where: {
-      user_id: user_id
-    }
-  }).then(function(posts) {
-    res.render('my-posts', {posts: posts});
-  });
 });
 
 //Create post
