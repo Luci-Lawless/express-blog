@@ -1,4 +1,3 @@
-// var sequelize = require('./index');
 module.exports = (sequelize, DataTypes) => {
   var Comment = sequelize.define('comment', {
     comment_id: {
@@ -27,10 +26,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Comment.associate = function (models) {
      models.comment.belongsTo(models.post, {
-       onDelete: "CASCADE",
-       foreignKey: {
-         allowNull: false
-       }
+       onDelete: "CASCADE"
      });
    };
 

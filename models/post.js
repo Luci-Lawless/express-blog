@@ -1,4 +1,3 @@
-// var sequelize = require('./index');
 module.exports = (sequelize, DataTypes) => {
   var Post = sequelize.define('post', {
     post_id: {
@@ -16,10 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Post.associate = function (models) {
      models.post.belongsTo(models.user, {
-       onDelete: "CASCADE",
-       foreignKey: {
-         allowNull: false
-       }
+       onDelete: "CASCADE"
      });
      models.post.hasMany(models.comment);
    };

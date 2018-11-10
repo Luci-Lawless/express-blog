@@ -1,9 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var postModel = require('./models/post');
-var userModel = require('./models/user');
-var commentModel = require('./models/comment');
-
+var models = require('./models');
 
 //Check for logged in user
 var sessionChecker = (req, res, next) => {
@@ -16,14 +13,14 @@ var sessionChecker = (req, res, next) => {
 
 /*Index*/
 router.get('/', function(req, res) {
-  postModel.Post.findAll().then(function(posts){
+  models.post.findAll().then(function(posts){
     res.render('index', {posts: posts});
   })
 });
 
 //Comments
 router.post('/post/:post_id/comment', function(req, res) {
-  commentModel.Comment.create({
+  models.comment.create({
     comment_author: req.body.comment_author,
     guest_email: req.body.guest_email,
     comment_body: req.body.comment
@@ -40,7 +37,7 @@ router.get('/user/signup', sessionChecker, function(req, res) {
 });
 
 router.post('/user/signup', sessionChecker, function(req, res) {
-  userModel.create({
+  models.user.create({
       name: req.body.name,
       email: req.body.email,
       password: req.body.password
@@ -63,7 +60,7 @@ router.post('/user/login', sessionChecker, function(req, res) {
   var username = req.body.name;
   var password = req.body.password;
 
-  userModel.findOne({
+  models.user.findOne({
     where: { name: username }
   })
   .then(function(user) {
@@ -93,7 +90,7 @@ router.get('/user/logout', function(req, res) {
 //All posts
 router.get('/dashboard', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
-    postModel.Post.findAll().then(function(posts) {
+    models.post.findAll().then(function(posts) {
       res.render('dashboard', {posts: posts});
     })
   } else {
@@ -104,7 +101,7 @@ router.get('/dashboard', function(req, res) {
 //User posts
 router.get('/my-posts/:user_id', function(req, res) {
   const user_id = req.params.user_id;
-  postModel.Post.findOne({
+  models.post.findOne({
     where: {
       user_id: user_id
     }
@@ -119,7 +116,7 @@ router.get('/create', function(req, res) {
 });
 
 router.post('/create', function(req, res) {
-  postModel.Post.create({
+  models.post.create({
     title: req.body.addTitle,
     post: req.body.addPost
   })
@@ -132,7 +129,7 @@ router.post('/create', function(req, res) {
 //Single post
 router.get('/single-post/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  postModel.Post.findOne({
+  models.post.findOne({
     where: {
       post_id: post_id
     }
@@ -144,7 +141,7 @@ router.get('/single-post/:post_id', function(req, res) {
 //Edit post
 router.get('/edit/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  postModel.Post.findOne({
+  models.post.findOne({
     where: {
       post_id: post_id
     }
@@ -156,7 +153,7 @@ router.get('/edit/:post_id', function(req, res) {
 //Update post
 router.post('/edit/:post_id', function(req, res) {
   const post_id = req.params.post_id;
-  postModel.Post.findOne({
+  models.post.findOne({
     where: {
       post_id: post_id
     }

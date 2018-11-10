@@ -1,4 +1,3 @@
-// var sequelize = require('./index');
 var bcrypt = require('bcrypt');
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('user', {
