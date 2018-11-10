@@ -5,9 +5,6 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
 var blogRouter = require('./routes');
-var Sequelize = require('sequelize');
-var User = require('./models/user');
-require('dotenv').config();
 var app = express();
 
 // view engine setup
@@ -46,6 +43,13 @@ var sessionChecker = (req, res, next) => {
         next();
     }
 };
+
+app.use(function(req,res,next){
+  if (req.user) {
+      res.locals.user = req.user;
+  }
+  next();
+});
 
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use('/', blogRouter);

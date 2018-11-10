@@ -31,6 +31,7 @@ h1 {
   margin-bottom: 30px;
 }
 
+
 .container {
   min-width: 80%;
 }
@@ -75,7 +76,7 @@ label {
 
 /*Posts*/
 .post-box div {
-  font-size: 2em;
+  font-size: 2rem;
   background-color: #fff;
   margin: 0 auto;
   margin-top: 3rem;
@@ -92,7 +93,14 @@ label {
   color: #624f9c;
   margin-bottom: 3rem;
   text-align: center;
+  transition: all .2s ease-in-out;
 }
+
+.title-link:hover {
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
 
 /*Buttons*/
 .btn-custom {
@@ -109,4 +117,46 @@ label {
 .btn-custom:hover {
   background-color: #2E2E2E;
   color: #fff;
+}
+
+/*Comments session*/
+#respond {
+  margin-top: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  line-height: 1.4em;
+}
+
+#respond h4 {
+  font-family: 'Yesteryear', cursive;
+  font-size: 3rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+#respond button {
+  font-size: 1.5rem;
+}
+#respond input[type='text'],
+#respond input[type='email'],
+#respond textarea {
+  margin-bottom: 5px;
+  font-size: 2rem;
+  display: block;
+  width: 100%;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+
+  line-height: 1.4em;
 }

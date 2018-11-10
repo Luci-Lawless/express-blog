@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include('layout'); -%>
+    <div class="video-banner">
+      <div class="video-text">
+      </div>
+    </div>
+    <div class="container">
+      <span class=""><h1>Posts</h1></span>
+        <div class="row post-box">
+          <div class="col-md-10 col-md-offset-2">
+            <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
+            <h1 class="title"><%= post.title %></h1>
+            <h3>By <%= post.user.name %></h3>
+            <br />
+            <p><%= post.post %></p>
+            <br />
+            <br />
+            <hr />
+          <h3><i class="fas fa-comment-alt"></i> Comments:</h3>
+            <% post.comments.forEach(function(comment) { %>
+              <div class="col-md" style="box-shadow: 10px 10px 10px 7px rgba(0,0,0,.7); background-color:#b8bad6;">
+                <h3 class=""><i class="fas fa-user-circle"></i> <%= comment.comment_author %> Says: </h3>
+                <p><%= comment.comment_body %></p>
+              </div>
+            <% })%>
+          <br />
+          <div id="respond">
+            <h4>Something to Say?</h4>
+            <form action="/post/<%= post.post_id%>/comments" method="post">
+              <label for="comment_author">Your Name: </label>
+              <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required>
+              <label for="email"> Email: </label>
+              <input type="email" name="guest_email" id="guest_email" value="" tabindex="2" required>
+              <label for="comment">Comment: </label>
+              <textarea name="comment" id="comment" rows="5" tabindex="4" required></textarea>
+              <button type="submit" class="btn btn-custom mb-2"> Send</button>
+            </form>
+          </div>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
