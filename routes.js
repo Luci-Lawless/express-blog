@@ -14,7 +14,8 @@ var sessionChecker = (req, res, next) => {
 /*Index*/
 router.get('/', function(req, res) {
   models.post.findAll({
-    order: [['createdAt', 'DESC']]
+    order: [['createdAt', 'DESC']],
+    include: [models.user]
   }).then(function(posts){
     res.render('index', {posts: posts});
   })
@@ -26,13 +27,18 @@ router.get('/post/:post_id', function(req, res) {
   models.post.findOne({
     where: {
       post_id: post_id
-    }
+    },
+    include: [models.user]
   }).then(function(post) {
     res.render('post', {post});
   });
 });
 
 //Comments
+// router.get('/post/:post_id/comment', function(req, res) {
+//   res.render('');
+// });
+
 router.post('/post/:post_id/comment', function(req, res) {
   models.comment.create({
     comment_author: req.body.comment_author,

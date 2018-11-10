@@ -31,6 +31,7 @@ h1 {
   margin-bottom: 30px;
 }
 
+
 .container {
   min-width: 80%;
 }
@@ -92,7 +93,14 @@ label {
   color: #624f9c;
   margin-bottom: 3rem;
   text-align: center;
+  transition: all .2s ease-in-out;
 }
+
+.title-link:hover {
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
 
 /*Buttons*/
 .btn-custom {

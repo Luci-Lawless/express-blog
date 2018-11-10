@@ -16,7 +16,9 @@
         <div class="row post-box">
           <div class="col-md-10 col-md-offset-2">
             <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
-            <a href="/post/<%= post.post_id%>"><h1 class="title"><%= post.title %></h1></a>
+            <a href="/post/<%= post.post_id%>" style="text-decoration:none;"><h1 class="title title-link"><%= post.title %></h1></a>
+            <h3>By <%= post.user.name %></h3>
+            <br />
             <p><%= post.post %></p>
           </div>
         </div>

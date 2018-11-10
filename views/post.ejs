@@ -16,8 +16,13 @@
           <div class="col-md-10 col-md-offset-2">
             <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
             <h1 class="title"><%= post.title %></h1>
+            <h3>By <%= post.user.name %></h3>
+            <br />
             <p><%= post.post %></p>
-          <a href="#">Load Comments</a>
+            <br />
+            <br />
+            <hr />
+          <a href="#"><i class="fas fa-comment-alt"></i> Comments:</a>
           <div id="respond">
             <h4>Something to Say?</h4>
             <form action="/post/<%= post.post_id%>/comment" method="post">
