@@ -91,7 +91,11 @@ router.get('/user/logout', function(req, res) {
 //All posts
 router.get('/dashboard', function(req, res) {
   if (req.session.user && req.cookies.user_sid) {
-    models.post.findAll().then(function(posts) {
+    models.post.findAll({
+      where: {
+        userUserId: req.session.user.user_id
+      }
+    }).then(function(posts) {
       res.render('dashboard', {posts: posts});
     })
   } else {
@@ -125,7 +129,8 @@ router.get('/create', function(req, res) {
 router.post('/create', function(req, res) {
   models.post.create({
     title: req.body.addTitle,
-    post: req.body.addPost
+    post: req.body.addPost,
+    userUserId: req.session.user.user_id
   })
   .then(function(posts) {
     posts.save();
