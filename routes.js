@@ -23,7 +23,8 @@ router.post('/post/:post_id/comment', function(req, res) {
   models.comment.create({
     comment_author: req.body.comment_author,
     guest_email: req.body.guest_email,
-    comment_body: req.body.comment
+    comment_body: req.body.comment,
+    postPostId: req.params.post_id
   })
   .then(function(comment) {
     comment.save();
@@ -100,7 +101,7 @@ router.get('/dashboard', function(req, res) {
 
 //User posts
 router.get('/my-posts/:user_id', function(req, res) {
-  const user_id = req.params.user_id;
+  var user_id = req.params.user_id;
   models.post.findOne({
     where: {
       user_id: user_id
