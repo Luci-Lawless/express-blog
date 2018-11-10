@@ -22,10 +22,17 @@
             <br />
             <br />
             <hr />
-          <a href="#"><i class="fas fa-comment-alt"></i> Comments:</a>
+          <h3><i class="fas fa-comment-alt"></i> Comments:</h3>
+            <% post.comments.forEach(function(comment) { %>
+              <div class="col-md" style="box-shadow: 10px 10px 10px 7px rgba(0,0,0,.7); background-color:#b8bad6;">
+                <h3 class=""><i class="fas fa-user-circle"></i> <%= comment.comment_author %> Says: </h3>
+                <p><%= comment.comment_body %></p>
+              </div>
+            <% })%>
+          <br />
           <div id="respond">
             <h4>Something to Say?</h4>
-            <form action="/post/<%= post.post_id%>/comment" method="post">
+            <form action="/post/<%= post.post_id%>/comments" method="post">
               <label for="comment_author">Your Name: </label>
               <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required>
               <label for="email"> Email: </label>

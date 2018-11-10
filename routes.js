@@ -28,18 +28,14 @@ router.get('/post/:post_id', function(req, res) {
     where: {
       post_id: post_id
     },
-    include: [models.user]
+    include: [models.user, models.comment]
   }).then(function(post) {
     res.render('post', {post});
   });
 });
 
-//Comments
-// router.get('/post/:post_id/comment', function(req, res) {
-//   res.render('');
-// });
-
-router.post('/post/:post_id/comment', function(req, res) {
+//Create Comments
+router.post('/post/:post_id/comments', function(req, res) {
   models.comment.create({
     comment_author: req.body.comment_author,
     guest_email: req.body.guest_email,
@@ -48,7 +44,7 @@ router.post('/post/:post_id/comment', function(req, res) {
   })
   .then(function(comment) {
     comment.save();
-    res.redirect('/');
+    res.redirect('back');
   });
 });
 
