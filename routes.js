@@ -112,7 +112,13 @@ router.get('/my-posts/:user_id', function(req, res) {
 
 //Create post
 router.get('/create', function(req, res) {
-  res.render('create');
+  var user = req.session.user;
+
+  if (user === undefined) {
+    res.redirect('/user/login');
+  } else {
+    res.render('create');
+  }
 });
 
 router.post('/create', function(req, res) {
@@ -128,26 +134,38 @@ router.post('/create', function(req, res) {
 
 //Single post
 router.get('/single-post/:post_id', function(req, res) {
-  const post_id = req.params.post_id;
-  models.post.findOne({
-    where: {
-      post_id: post_id
-    }
-  }).then(function(post) {
-    res.render('single-post', {post});
-  });
+  var user = req.session.user;
+
+  if (user === undefined) {
+    res.redirect('/user/login');
+  } else {
+    var post_id = req.params.post_id;
+    models.post.findOne({
+      where: {
+        post_id: post_id
+      }
+    }).then(function(post) {
+      res.render('single-post', {post});
+    });
+  }
 });
 
 //Edit post
 router.get('/edit/:post_id', function(req, res) {
-  const post_id = req.params.post_id;
-  models.post.findOne({
-    where: {
-      post_id: post_id
-    }
-  }).then(function(post) {
-    res.render('edit', {post});
-  });
+  var user = req.session.user;
+
+  if (user === undefined) {
+    res.redirect('/user/login');
+  } else {
+    var post_id = req.params.post_id;
+    models.post.findOne({
+      where: {
+        post_id: post_id
+      }
+    }).then(function(post) {
+      res.render('edit', {post});
+    });
+  }
 });
 
 //Update post
