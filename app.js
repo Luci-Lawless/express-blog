@@ -5,8 +5,10 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var logger = require('morgan');
 var blogRouter = require('./routes');
-var Sequelize = require('sequelize');
+var sequelize = require('sequelize');
 var User = require('./models/user');
+var Post = require('./models/post');
+var Comment = require('./models/comment');
 require('dotenv').config();
 var app = express();
 
