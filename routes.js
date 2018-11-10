@@ -20,6 +20,18 @@ router.get('/', function(req, res) {
   })
 });
 
+//Post page
+router.get('/post/:post_id', function(req, res) {
+  var post_id = req.params.post_id;
+  models.post.findOne({
+    where: {
+      post_id: post_id
+    }
+  }).then(function(post) {
+    res.render('post', {post});
+  });
+});
+
 //Comments
 router.post('/post/:post_id/comment', function(req, res) {
   models.comment.create({
@@ -130,7 +142,7 @@ router.post('/create', function(req, res) {
   });
 });
 
-//Single post
+//Edit Single post
 router.get('/single-post/:post_id', function(req, res) {
   var user = req.session.user;
 

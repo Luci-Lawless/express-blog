@@ -44,6 +44,13 @@ var sessionChecker = (req, res, next) => {
     }
 };
 
+app.use(function(req,res,next){
+  if (req.user) {
+      res.locals.user = req.user;
+  }
+  next();
+});
+
 app.use('/public',express.static(path.join(__dirname, 'public')));
 app.use('/', blogRouter);
 

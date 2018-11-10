@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Home</title>
+  </head>
+  <body>
+    <%- include('layout'); -%>
+    <div class="video-banner">
+      <div class="video-text">
+      </div>
+    </div>
+    <div class="container">
+      <span class=""><h1>Posts</h1></span>
+        <div class="row post-box">
+          <div class="col-md-10 col-md-offset-2">
+            <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
+            <h1 class="title"><%= post.title %></h1>
+            <p><%= post.post %></p>
+          <a href="#">Load Comments</a>
+          <div id="respond">
+            <h4>Something to Say?</h4>
+            <form action="/post/<%= post.post_id%>/comment" method="post">
+              <label for="comment_author">Your Name: </label>
+              <input type="text" name="comment_author" id="comment_author" value="" tabindex="1" required>
+              <label for="email"> Email: </label>
+              <input type="email" name="guest_email" id="guest_email" value="" tabindex="2" required>
+              <label for="comment">Comment: </label>
+              <textarea name="comment" id="comment" rows="5" tabindex="4" required></textarea>
+              <button type="submit" class="btn btn-custom mb-2"> Send</button>
+            </form>
+          </div>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
