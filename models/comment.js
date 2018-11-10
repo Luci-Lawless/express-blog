@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     guest_email: {
       type: DataTypes.STRING,
       notEmpty: true,
-      unique: true,
+      unique: false,
       isEmail: true,
       allowNull: false
     },
