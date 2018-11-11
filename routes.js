@@ -230,15 +230,16 @@ router.post('/edit/:post_id', function(req, res) {
 });
 
 // Delete post
-// router.get('/edit/:post_id', function(re) {
-//   var post_id = req.params.post_id;
-//   models.post.destroy({
-//     where: {
-//       post_id: post_id
-//     }
-//   }).then(function () {
-//      res.status(200).send('Post deleted!');
-//   })
-// });
+router.get('/delete/:post_id', function(req, res) {
+  var post_id = req.params.post_id;
+  console.log('deletando post id' + post_id);
+  models.post.destroy({
+    where: {
+      post_id: post_id
+    }
+  }).then(function() {
+      res.redirect("/dashboard");
+  });
+});
 
 module.exports = router;
