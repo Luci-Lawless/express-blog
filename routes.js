@@ -34,7 +34,7 @@ router.get('/post/:post_id', function(req, res) {
   });
 });
 
-//Create Comments
+//Create Comment
 router.post('/post/:post_id/comments', function(req, res) {
   models.comment.create({
     comment_author: req.body.comment_author,
@@ -50,10 +50,19 @@ router.post('/post/:post_id/comments', function(req, res) {
 
 // Sign up
 router.get('/user/signup', sessionChecker, function(req, res) {
-  res.render('signup');
+  var message = {};
+  res.render('signup', { message });
 });
 
 router.post('/user/signup', sessionChecker, function(req, res) {
+  if(req.body.password.length < 8) {
+    res.status(400);
+    var message = {
+      text: 'Please, enter a password with at least 8 characters.'
+    };
+    res.render('signup', { message });
+    return;
+  }
   models.user.create({
       name: req.body.name,
       email: req.body.email,
@@ -64,6 +73,7 @@ router.post('/user/signup', sessionChecker, function(req, res) {
       res.redirect('/dashboard');
   })
   .catch(error => {
+    console.log(error);
       res.redirect('/user/signup');
   });
 });
@@ -182,7 +192,7 @@ router.get('/edit/:post_id', function(req, res) {
 
 //Update post
 router.post('/edit/:post_id', function(req, res) {
-  const post_id = req.params.post_id;
+  var post_id = req.params.post_id;
   models.post.findOne({
     where: {
       post_id: post_id
@@ -201,5 +211,17 @@ router.post('/edit/:post_id', function(req, res) {
     }
   });
 });
+
+// Delete post
+// router.get('/edit/:post_id', function(re) {
+//   var post_id = req.params.post_id;
+//   models.post.destroy({
+//     where: {
+//       post_id: post_id
+//     }
+//   }).then(function () {
+//      res.status(200).send('Post deleted!');
+//   })
+// });
 
 module.exports = router;
