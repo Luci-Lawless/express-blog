@@ -50,24 +50,29 @@ router.post('/post/:post_id/comments', function(req, res) {
 
 // Sign up
 router.get('/user/signup', sessionChecker, function(req, res) {
-  var message = {};
+  var message = {
+    errors: []
+  };
   res.render('signup', { message });
 });
 
 router.post('/user/signup', sessionChecker, function(req, res) {
+  //Validate password length
   if(req.body.password.length < 8) {
     res.status(400);
     var message = {
-      text: 'Please, enter a password with at least 8 characters.'
+      text: 'Please, enter a password with at least 8 characters.',
+      errors: []
     };
     res.render('signup', { message });
     return;
   }
-
+//Check if passwords match
   if(req.body.password !== req.body.password2) {
     res.status(400);
     var message = {
-      text2: "Passwords don't match!"
+      text2: "Passwords don't match!",
+      errors: []
     };
     res.render('signup', { message });
     return;
@@ -83,8 +88,10 @@ router.post('/user/signup', sessionChecker, function(req, res) {
       res.redirect('/dashboard');
   })
   .catch(error => {
-    console.log(error);
-      res.redirect('/user/signup');
+    var message = {
+      errors: error.errors
+    };
+    res.render('signup', {message});
   });
 });
 

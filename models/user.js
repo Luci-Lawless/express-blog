@@ -26,12 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   len: {
-      //       args: [8, 50],
-      //       msg: 'Please, enter a password with at least 8 characters.'
-      //   }
-      }
+    }
   }, {
     hooks: {
       beforeCreate: (user) => {
