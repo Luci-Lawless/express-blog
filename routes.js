@@ -63,6 +63,16 @@ router.post('/user/signup', sessionChecker, function(req, res) {
     res.render('signup', { message });
     return;
   }
+
+  if(req.body.password !== req.body.password2) {
+    res.status(400);
+    var message = {
+      text2: "Passwords don't match!"
+    };
+    res.render('signup', { message });
+    return;
+  }
+
   models.user.create({
       name: req.body.name,
       email: req.body.email,
