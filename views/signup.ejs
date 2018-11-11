@@ -19,6 +19,11 @@
                   <label for="name">Username</label>
                   <input type="text" id="username" name="name" class="form-control" required>
                 </div>
+                <% message.errors.forEach(function(err) { %>
+                  <div>
+                    <span style="color:red;"><p><%= err.message %></p></span>
+                  </div>
+                <% })%>
                 <div class="form-group">
                   <label for="email">E-mail</label>
                   <input type="text" id="email" name="email" class="form-control" required>
@@ -27,9 +32,15 @@
                   <label for="password">Password</label>
                   <input type="password" id="password" name="password" class="form-control" required>
                 </div>
+                <div>
+                  <span style="color:red;"><p><%= message.text %></p></span>
+                </div>
                 <div class="form-group">
                   <label for="password2">Confirm Password</label>
                   <input type="password" id="password2" name="password2" class="form-control" required>
+                </div>
+                <div>
+                  <span style="color:red;"><p><%= message.text2 %></p></span>
                 </div>
                 <button type="submit" class="btn btn-custom">Sign Up</button>
               </form>
