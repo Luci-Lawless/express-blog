@@ -38,7 +38,6 @@
             <table class="table">
               <thead class="" style="background-color: #b8bad6;">
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Title</th>
                   <th scope="col">Author</th>
                   <th scope="col">Date</th>
@@ -47,11 +46,10 @@
               <tbody>
                 <% posts.forEach(function(post) { %>
                   <tr>
-                    <th scope="row"><%= post.post_id%></th>
                     <td><a href="/single-post/<%= post.post_id%>" class="dashboard-links"><%= post.title %></a></td>
                     <td><%= post.user.name %></td>
                     <td><%= post.createdAt %></td>
-                    </tr>
+                  </tr>
                 <% })%>
               </tbody>
             </table>
