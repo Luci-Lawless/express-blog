@@ -9,14 +9,14 @@ body, html {
   background-color: #fff;
 }
 
-.navbar-custom {
+/*.navbar-custom {
   background-color: transparent;
 }
 
 .navbar-custom a {
   color: #000000;
   font-size: 1.4rem;
-}
+}*/
 
 .date {
   font-size: 1.5rem;
@@ -41,15 +41,15 @@ h1 {
    box-shadow: 10px 10px 10px 7px rgba(0,0,0,.7);
    margin-bottom: 5%;
 }
-/*
+
 .hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/public/images/banner.png");
-  height: 50%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/public/images/banner1.jpg");
+  height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-}*/
+}
 
 /*Dashboard*/
 .dashboard-links {
