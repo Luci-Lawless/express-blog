@@ -5,24 +5,35 @@
     <title>Home</title>
   </head>
   <body>
-    <%- include('layout'); -%>
-    <div class="video-banner">
-      <div class="video-text">
+
+    <div class="hero-image">
+      <%- include('layout'); -%>
+      <div class="hero-text">
+        <h1>Classic Blog</h1>
+        <p>“We write to taste life twice, in the moment and in retrospect.” ― Anais Nin</p>
       </div>
     </div>
+    <%# <div style="width:100%; height:50%;"></div>%>
     <div class="container">
-      <span class=""><h1>Posts</h1></span>
       <% posts.forEach(function(post) { %>
         <div class="row post-box">
           <div class="col-md-10 col-md-offset-2">
-            <img src="https://cdn3.movieweb.com/i/article/Hzl8LW74tyTXnFnj5VcpQcS2NpAsXJ/798:50/Suspiria-Movie-1977-Goblin-Score-Soundtrack-Live-2018.jpg">
+            <img src="/public/images/post_img.jpg">
             <a href="/post/<%= post.post_id%>" style="text-decoration:none;"><h1 class="title title-link"><%= post.title %></h1></a>
-            <h3>By <%= post.user.name %></h3>
+            <span style="text-align: right;"><h3>Author: <%= post.user.name %></h3></span>
             <br />
             <p><%= post.post %></p>
+            <br />
+            <a href="/post/<%= post.post_id%>" style="text-decoration:none; color: #624f9c;">Read more <i class="fas fa-angle-double-right"></i></a>
+            <br />
+            <br />
+            <hr />
           </div>
         </div>
       <% })%>
     </div>
+    <footer>
+     <%- include('footer') -%>
+   </footer>
   </body>
 </html>
